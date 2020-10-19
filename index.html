@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<body>
+<form>
+	Number 1 <input type='text' id = 'number1'> <br />
+	Number 2 <input type = 'text' id = 'number2'> <br />
+	<input type = 'button' value = "Check" onclick = "checkAmicable()">
+	<!--<input type = 'button' value = "isFactor Test" onclick = "isFactor(15, 4)">-->
+<div> 
+	<p><span id = "testing"> </span></p>
+	<p>The factors of <span id = "arrayShow1"></span> <br /> The sum of these factors is: <span id = "arraySum1"></span>
+	</p>
+	<p>The factors of <span id = "arrayShow2"></span> <br /> The sum of these factors is: <span id = "arraySum2"></span>
+	</p>
+</div>
+<!--<p> Testing isFactor : <span id = 'divisible'></span> 
+</p>-->
+</form>
+</body>
+<script>
+	function isFactor(number, factor) {
+		if (number%factor === 0) {
+			//document.getElementById('divisible').innerHTML = "true";
+			return true;
+		}else {
+			//document.getElementById('divisible').innerHTML = "false";
+			return false;
+		}
+	}
+	//To display the result onto <div> use 
+	//document.getElementById('arrayShow').innerHTML = 
+	//showArray(whatever array);
+	function showArray(array) {
+		var allItems = "[";
+		for (i = 0; i < array.length; i++){
+			allItems = allItems + " " + array[i];
+		}
+		allItems = allItems+"]";
+		return allItems;
+	}
+	var testArr = [5, 6, 7, 8, 9, 10];
+	//document.getElementById('arrayShow').innerHTML = showArray(testArr);
+	function addArray(array) {
+		var sum = 0;
+		for (i = 0; i<array.length; i++) {
+			sum = sum + array[i];
+		}
+		return sum;
+	}
+	//document.getElementById('arraySum').innerHTML = addArray(testArr);
+	function checkAmicable(){
+		var number1, number2;
+		number1 = document.getElementById('number1').value;
+		number2 = document.getElementById('number2').value;
+		var factors1 = [];
+		var factors2 = [];
+		for (i = 1; i< number1; i++) {
+			if (isFactor(number1, i)) {
+				factors1.push(i);
+			}
+		}
+		for (i = 1; i < number2; i++) {
+			if (isFactor(number2, i)) {
+				factors2.push(i);
+			}
+		}
+		var sum1 = addArray(factors1);
+		var sum2 = addArray(factors2);
+		if (sum1 == number2 && sum2 == number1) {
+			document.getElementById('testing').innerHTML = number1 + " and " + number2 + " are amicable numbers.";
+		}
+		else {
+			document.getElementById('testing').innerHTML = number1 + " and " + number2 + " are not amicable numbers.";
+		}
+		document.getElementById('arrayShow1').innerHTML = number1+ ": " + showArray(factors1);
+		document.getElementById('arraySum1').innerHTML = sum1;
+		document.getElementById('arrayShow2').innerHTML = number2+ ": " + showArray(factors2);
+		document.getElementById('arraySum2').innerHTML = sum2;
+	}
+</script>
+</html>
+
+		
